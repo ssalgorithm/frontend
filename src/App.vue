@@ -1,14 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="deep-purple lighten-3"
-      dark
-    >
-      <div class="d-flex align-center">
-       <p>ssalgorithm</p>
-      </div>
-    </v-app-bar>
+    <Nav-bar></Nav-bar>
 
     <v-main>
       <router-view/>
@@ -17,12 +9,23 @@
 </template>
 
 <script>
-
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: 'App',
-
+  components: {
+    NavBar,
+  },
   data: () => ({
     //
   }),
+  methods:{
+    route_home(){
+      this.$router.push("/");
+    },
+    login(){
+      console.log("login");
+      this.$router.push("/user");
+    }
+  }
 };
 </script>
