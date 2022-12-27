@@ -10,7 +10,7 @@
       </div> -->
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title @click="route_home()">Ssalgorithm</v-toolbar-title>
+      <v-toolbar-title><a color="#843DFC" class="header-title" @click="route_home()">Ssalgorithm</a></v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -34,7 +34,7 @@ export default {
         },
         login(){
         console.log("login");
-        this.$router.push("/user");
+        this.$router.push("/login");
         }
     }
 
@@ -42,5 +42,10 @@ export default {
 </script>
 
 <style>
+    .header-title{
+        /* !important : 반 강제 */
+        color : #843DFC !important;
+        text-decoration: none;
 
+    }
 </style>
