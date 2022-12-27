@@ -1,7 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import UserLogin from "@/components/UserLogin";
+import UserLogin from "@/components/user/UserLogin";
+import UserJoin from "@/components/user/UserJoin";
 Vue.use(VueRouter);
 
 const routes = [
@@ -11,10 +12,15 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/user",
-    name: "user",
+    path: "/login",
+    name: "login",
     component : UserLogin,
-  }
+  },
+  {
+    path: "/join",
+    name: "join",
+    component : UserJoin,
+  },
 ];
 
 const router = new VueRouter({

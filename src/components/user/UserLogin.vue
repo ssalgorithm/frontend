@@ -15,6 +15,10 @@
             filled
             rounded
             dense
+
+            :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show ? 'text' : 'password'" 
+            @click:append="show = !show"
           ></v-text-field>
         <v-btn
             rounded
@@ -24,7 +28,8 @@
             >
             로그인
         </v-btn>
-        아직 회원이 아니신가요?? >> 회원가입
+        <span>아직 회원이 아니신가요?? >> <a @click="join()">회원가입</a>
+        </span>
         <div class="divide-section">
           <hr class="sign-in-line">
           <span class="sign-in-text">
@@ -53,7 +58,16 @@
 
 <script>
 export default {
-
+  data(){
+    return {
+      show : false,
+    }
+  },
+  methods:{
+    join(){
+      this.$router.push("/join");
+    }
+  }
 }
 </script>
 
@@ -72,7 +86,8 @@ export default {
     }
     .sign-in-line{
       position: relative;
-      color: #abb0b5;
+      color: #dee2e6;
+      height: 1px;
       bottom: -13px;
     }
     .sign-in-text{
