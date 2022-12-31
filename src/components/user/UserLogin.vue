@@ -8,6 +8,7 @@
             filled
             rounded
             dense
+            v-model="user.userId"
           ></v-text-field>
           <v-text-field
             label="password"
@@ -19,12 +20,14 @@
             :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show ? 'text' : 'password'" 
             @click:append="show = !show"
+            v-model="user.password"
           ></v-text-field>
         <v-btn
             rounded
             color="deep-purple lighten-3"
             dark
             width="100%" height="52px"
+            @click="login()"
             >
             로그인
         </v-btn>
@@ -57,15 +60,51 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+const userStore = "userStore";
+
 export default {
   data(){
     return {
       show : false,
+      user : {
+        userId : "",
+        password : "",
+      }
     }
   },
+  computed:{
+    ...mapState(userStore, ["isLogin"]),
+  },
   methods:{
+    ...mapActions(userStore, ["userConfirm"]),
     join(){
+      // 회원가입 창으로 이동
       this.$router.push("/join");
+    },
+    async login(){
+      // 로그인 버튼 클릭 이벤트
+      
+      if(this.user.userId === ""){
+        alert('아이디를 입력해주세요~');
+        return false;
+      }
+      if(this.user.password === ""){
+        alert('비밀번호를 입력해주세요~');
+        return false;
+      }
+
+      //store - user - action(user)
+      await this.userConfirm(this.user);
+
+      let token = sessionStorage.getItem("access-token");
+      console.log(token);
+      
+      //state의 isLogin 확인
+      // 발급 받은 토큰을 통해 비동기로 데이터 요청
+      if(this.isLogin){
+        console.log("token 으로 userInfo");
+      }
     }
   }
 }
